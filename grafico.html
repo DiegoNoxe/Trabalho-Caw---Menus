@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menus</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <header>
+            <h1>TRABALHO DE CAW | MARCIANO</h1>
+            <nav>
+                <ul>
+                    <li><a target="_blank" href="cadastro.html">Cadastro</a></li>
+                    <li><a target="_blank" href="fornecedores.html">Fornecedores</a></li>
+                    <li><a target="_blank" href="sobre.html">Sobre</a></li>
+                    <li><a target="_blank" href="idex.html">Home</a></li>
+                </ul>
+            </nav>
+        </header>
+    </header>
+
+    <canvas id="myChart"></canvas>
+    <script>
+        // Utility functions from the Chart.js library
+        const Utils = {
+            CHART_COLORS: {
+                red: 'rgb(255, 99, 132)',
+                blue: 'rgb(54, 162, 235)',
+                green: 'rgb(75, 192, 192)',
+            },
+            numbers: function(config) {
+                const cfg = config || {};
+                const min = cfg.min || 0;
+                const max = cfg.max || 1;
+                const from = cfg.from || [];
+                const count = cfg.count || 8;
+                const decimals = cfg.decimals || 8;
+                const continuity = cfg.continuity || 1;
+                const dfactor = Math.pow(10, decimals) || 0;
+                const data = [];
+                let i, value;
+
+                for (i = 0; i < count; ++i) {
+                    value = (from[i] || 0) + Math.random() * (max - min) + min;
+                    if (Math.random() <= continuity) {
+                        data.push(Math.round(dfactor * value) / dfactor);
+                    } else {
+                        data.push(null);
+                    }
+                }
+
+                return data;
+            },
+            months: function(config) {
+                const cfg = config || {};
+                const count = cfg.count || 12;
+                const section = cfg.section;
+                const values = [];
+
+                for (let i = 0; i < count; ++i) {
+                    const value = new Date(0, i, 1).toLocaleString('en', { month: 'short' });
+                    values.push(value);
+                }
+
+                return values;
+            }
+        };
+
+        const DATA_COUNT = 7;
+        const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
+
+        const labels = Utils.months({count: 7});
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: Utils.numbers(NUMBER_CFG),
+                    backgroundColor: Utils.CHART_COLORS.red,
+                    stack: 'Stack 0',
+                },
+                {
+                    label: 'Dataset 2',
+                    data: Utils.numbers(NUMBER_CFG),
+                    backgroundColor: Utils.CHART_COLORS.blue,
+                    stack: 'Stack 0',
+                },
+                {
+                    label: 'Dataset 3',
+                    data: Utils.numbers(NUMBER_CFG),
+                    backgroundColor: Utils.CHART_COLORS.green,
+                    stack: 'Stack 1',
+                },
+            ]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Chart.js Bar Chart - Stacked'
+                    },
+                },
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        };
+
+        window.onload = function() {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, config);
+        };
+    </script>
+    <footer>
+        <p>Feito por <a target="_blank" href="https://github.com/DiegoNoxe">Diego Nascimento</a> | Trabalho de caw FAETERJ RIO</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    form{
+        top: 14rem;
+        left: 51rem;
+        text-align: center;
+        position: relative;
+        display: inline-block;
+        border: 2px solid blue;
+    }
+    label{
+        color: black;
+        font-weight: bolder;
+    }
+</style>
+<body>
+    <body>
+     <header>
+        <h1>Cadastro</h1>
+        <nav>
+            <ul>
+                <li><a target="_blank" href="idex.html">Home</a></li>
+                <li><a target="_blank" href="fornecedores.html">Fornecedores</a></li>
+                <li><a target="_blank" href="sobre.html">Sobre</a></li>
+                <li><a target="_blank" href="grafico.html">Grafico</a></li>
+            </ul>
+        </nav>
+    </header>
+        <form action="/submit_form" method="post">
+            <label for="fname">Nome:</label><br>
+            <input type="text" id="fname" name="fname" required><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="password">Senha:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+           
+            <input type="submit" value="Enviar">
+        </form>
+        <footer>
+            <p>Feito por <a target="_blank" href="https://github.com/DiegoNoxe">Diego Nascimento</a> | Trabalho de caw FAETERJ RIO</p>
+        </footer>
+    </body>
+</html>
